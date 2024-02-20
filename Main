@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar Widget</title>
+    <style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.progress-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.progress-container {
+  width: 90%;
+  max-width: 600px; 
+  margin: 0 auto;
+  background-color: #f4eeee; /*replace this with the color or hex you want as the background for your progress bar*/
+  border-radius: 5px;
+  padding: 10px;
+  margin:10px;
+
+}
+
+.progress-bar {
+  position: relative;
+  display: flex; 
+  align-items: center; 
+  height: 30px;
+  background-color: #706c69;/*replace this with the color or hex you want for your progress bar*/
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  color: #f4eeee;/*replace this with the color or hex you want as the text in your progress bar*/
+  float:left;
+  padding-left: 14px; 
+}
+
+    </style>  
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+    const startDate = new Date("2024-01-08").getTime();// replace this with what you want your start date to be
+    const endDate = new Date("2024-05-03T").getTime();//replace this with what you want your end date to be
+
+
+    const progressText = document.getElementById("progress-text");
+    const progressBar = document.getElementById("progress-bar");
+
+    function updateProgressBar() {
+    const currentTime = new Date().getTime();
+    const totalTime = endDate - startDate;
+    const elapsedTime = currentTime - startDate;
+    const progressPercentage = (elapsedTime / totalTime) * 100;
+    progressBar.style.width = progressPercentage + "%";
+    progressText.textContent = Math.round(progressPercentage) + "%";
+  }
+    updateProgressBar();
+    setInterval(updateProgressBar, 1000);
+    });
+    </script>
+    </head>
+    <body>
+      <div class="progress-wrapper">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar">
+            <div class="progress-text" id="progress-text"></div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
